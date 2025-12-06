@@ -39,7 +39,7 @@
             <div class="flex-1 relative">
                 <input 
                     type="text" 
-                    placeholder="Search for movies, TV shows, people..." 
+                    placeholder="Search for movies..." 
                     class="w-full px-6 py-3 pl-12 bg-surface-light/80 text-gray-100 rounded-xl border border-white/5 focus:outline-none focus:border-accent/40 focus:bg-surface-light transition-all placeholder:text-gray-500"
                 >
                 <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,153 +49,126 @@
         </div>
     </header>
     
-    <main class="max-w-7xl mx-auto px-6 py-10 flex-1 w-full">
-        <!-- Movie Header Section -->
-        <div class="grid lg:grid-cols-[300px_1fr] gap-10 mb-12">
-            <!-- Poster Area -->
-            <div class="poster-glow rounded-2xl overflow-hidden aspect-[2/3] bg-surface-light">
-                <!-- Poster image will go here -->
-            </div>
-            
-            <!-- Movie Info -->
-            <div class="flex flex-col justify-center">
-                <!-- Title Area -->
-                <h1 id="movie-title" class="text-4xl lg:text-5xl font-bold mb-2 leading-tight">Movie Title</h1>
-                <p id="movie-tagline" class="text-gray-400 italic mb-6">Tagline goes here</p>
+    <!-- ==================== DETAILS SECTION ==================== -->
+    <section class="relative">
+        <!-- Backdrop Image -->
+        <div class="absolute inset-0 h-[500px] overflow-hidden -z-10">
+            <div id="backdropImage" class="w-full h-full bg-surface-light bg-cover bg-center"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/90 to-surface/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80"></div>
+        </div>
+        
+        <!-- Details Content -->
+        <div class="max-w-7xl mx-auto px-6 pt-10 pb-12">
+            <div class="grid lg:grid-cols-[280px_1fr] gap-10">
+                <!-- Poster -->
+                <div class="flex justify-center lg:justify-start">
+                    <div id="posterImage" class="poster-glow rounded-2xl overflow-hidden aspect-[2/3] w-64 lg:w-full bg-surface-light"></div>
+                </div>
                 
-                <!-- Rating Badge -->
-                <div class="flex items-center gap-5 mb-6">
-                    <div class="relative w-16 h-16">
-                        <div class="rating-ring absolute inset-0 rounded-full" style="--score: 85;"></div>
-                        <div class="absolute inset-1 rounded-full bg-surface flex items-center justify-center">
-                            <span id="movie-rating" class="text-xl font-bold">8.5</span>
+                <!-- Movie Info -->
+                <div class="flex flex-col justify-center">
+                    <h1 id="movieTitle" class="text-4xl lg:text-5xl font-bold mb-2 leading-tight text-white drop-shadow-lg">Movie Title</h1>
+                    <p id="movieTagline" class="text-gray-300 italic mb-6 text-lg drop-shadow">Tagline goes here</p>
+                    
+                    <!-- Rating -->
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="relative w-16 h-16">
+                            <div id="ratingRing" class="rating-ring absolute inset-0 rounded-full" style="--score: 0;"></div>
+                            <div class="absolute inset-1 rounded-full bg-surface flex items-center justify-center">
+                                <span id="movieRating" class="text-xl font-bold">0</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white">User Score</p>
+                            <p id="movieVoteCount" class="text-gray-400 text-sm">0 votes</p>
                         </div>
                     </div>
+                    
+                    <!-- Genres -->
+                    <div id="genreContainer" class="flex flex-wrap gap-2 mb-6"></div>
+                    
+                    <!-- Overview -->
                     <div>
-                        <p class="font-semibold text-white">User Score</p>
-                        <p class="text-gray-500 text-sm">2,847 votes</p>
-                    </div>
-                </div>
-                
-                <!-- Genre Badges -->
-                <div id="genre-container" class="flex flex-wrap gap-2 mb-8">
-                    <span class="genre-badge px-4 py-1.5 rounded-full border border-white/10 text-sm text-gray-300 transition-colors cursor-pointer">Action</span>
-                    <span class="genre-badge px-4 py-1.5 rounded-full border border-white/10 text-sm text-gray-300 transition-colors cursor-pointer">Adventure</span>
-                    <span class="genre-badge px-4 py-1.5 rounded-full border border-white/10 text-sm text-gray-300 transition-colors cursor-pointer">Sci-Fi</span>
-                </div>
-                
-                <!-- Overview Section -->
-                <div class="mb-8">
-                    <h2 class="text-sm font-semibold text-accent uppercase tracking-wider mb-3">Overview</h2>
-                    <p id="movie-overview" class="text-gray-300 leading-relaxed text-lg">
-                        This is where the movie overview will appear. It will contain a description of the plot and main themes of the film.
-                    </p>
-                </div>
-                
-                <!-- Budget + Revenue Area -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div class="glass rounded-xl p-4">
-                        <p class="text-gray-500 text-xs uppercase tracking-wide mb-1">Budget</p>
-                        <p id="movie-budget" class="text-lg font-semibold">$150M</p>
-                    </div>
-                    <div class="glass rounded-xl p-4">
-                        <p class="text-gray-500 text-xs uppercase tracking-wide mb-1">Revenue</p>
-                        <p id="movie-revenue" class="text-lg font-semibold text-accent">$500M</p>
-                    </div>
-                    <div class="glass rounded-xl p-4">
-                        <p class="text-gray-500 text-xs uppercase tracking-wide mb-1">Runtime</p>
-                        <p id="movie-runtime" class="text-lg font-semibold">2h 32m</p>
-                    </div>
-                    <div class="glass rounded-xl p-4">
-                        <p class="text-gray-500 text-xs uppercase tracking-wide mb-1">Release</p>
-                        <p id="movie-release" class="text-lg font-semibold">2024</p>
+                        <h2 class="text-sm font-semibold text-accent uppercase tracking-wider mb-3">Overview</h2>
+                        <p id="movieOverview" class="text-gray-300 leading-relaxed text-base max-w-3xl">Loading overview...</p>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Trailer Section -->
+    </section>
+    
+    <!-- ==================== BOX OFFICE SECTION ==================== -->
+    <section class="bg-surface-light border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-1 h-6 bg-accent rounded-full"></div>
+                <h2 class="text-2xl font-semibold">Box Office</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass rounded-xl p-5">
+                    <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Release Date</p>
+                    <p id="movieRelease" class="text-xl font-semibold text-white">—</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Runtime</p>
+                    <p id="movieRuntime" class="text-xl font-semibold text-white">—</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Budget</p>
+                    <p id="movieBudget" class="text-xl font-semibold text-white">—</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Revenue</p>
+                    <p id="movieRevenue" class="text-xl font-semibold text-accent">—</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <main class="max-w-7xl mx-auto px-6 py-10 flex-1 w-full">
+        <!-- ==================== TRAILER SECTION ==================== -->
         <section class="mb-12">
             <div class="flex items-center gap-3 mb-5">
                 <div class="w-1 h-6 bg-accent rounded-full"></div>
                 <h2 class="text-2xl font-semibold">Trailer</h2>
             </div>
-            <div id="trailer-container" class="rounded-2xl overflow-hidden aspect-video bg-surface-light relative group cursor-pointer">
-                <!-- YouTube embed will go here -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 rounded-full bg-accent/90 flex items-center justify-center transition-transform group-hover:scale-110">
-                        <svg class="w-7 h-7 text-surface ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <div id="trailerContainer" class="rounded-2xl overflow-hidden aspect-video bg-surface-light relative">
+                <div id="trailerPlaceholder" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
+                    <div id="trailerThumbnail" class="absolute inset-0 bg-cover bg-center"></div>
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <div class="relative w-20 h-20 rounded-full bg-accent/90 flex items-center justify-center transition-transform group-hover:scale-110 shadow-lg shadow-accent/30">
+                        <svg class="w-8 h-8 text-surface ml-1" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
                     </div>
                 </div>
             </div>
+            <p id="noTrailerMessage" class="hidden text-gray-500 text-center py-12">No trailer available</p>
         </section>
         
-        <!-- Cast Grid -->
-        <section>
-            <div class="flex items-center gap-3 mb-5">
-                <div class="w-1 h-6 bg-accent rounded-full"></div>
-                <h2 class="text-2xl font-semibold">Cast</h2>
+        <!-- ==================== CAST SECTION ==================== -->
+        <section class="min-w-0">
+            <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-1 h-6 bg-accent rounded-full"></div>
+                    <h2 class="text-2xl font-semibold">Cast</h2>
+                </div>
+                <div class="flex gap-2">
+                    <button id="castScrollLeft" class="scroll-arrow w-10 h-10 rounded-full bg-white/5 hover:bg-accent/20 border border-white/10 flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <button id="castScrollRight" class="scroll-arrow w-10 h-10 rounded-full bg-white/5 hover:bg-accent/20 border border-white/10 flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div id="cast-container" class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                <!-- Cast cards will be generated here -->
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
-                <div class="card-hover glass rounded-xl overflow-hidden flex-shrink-0 w-36">
-                    <div class="aspect-[2/3] bg-surface-lighter"></div>
-                    <div class="p-3">
-                        <p class="font-semibold text-sm truncate">Actor Name</p>
-                        <p class="text-gray-500 text-xs truncate">Character</p>
-                    </div>
-                </div>
+            <div id="castContainer" class="flex gap-4 overflow-x-auto pb-4 custom-scrollbar scroll-smooth">
+                <!-- Cast cards will be generated here --> 
             </div>
         </section>
     </main>
@@ -213,5 +186,9 @@
             </p>
         </div>
     </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/prompt.js"></script>
+    <script src="js/movie.js"></script>
 </body>
 </html>

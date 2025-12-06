@@ -168,7 +168,7 @@
 }
 
 .rating-ring {
-    background: conic-gradient(#f59e0b calc(var(--score) * 3.6deg), rgba(255,255,255,0.1) 0deg);
+    background: conic-gradient(var(--rating-color, #f59e0b) calc(var(--score) * 3.6deg), rgba(255,255,255,0.1) 0deg);
 }
 
 .card-hover {
@@ -188,11 +188,26 @@
 /* ---------------------------------------------
    Utility Classes
    --------------------------------------------- */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  
+/* Custom scrollbar - visible on desktop, hidden on mobile */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245, 158, 11, 0.3) transparent;
 }
 
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+.custom-scrollbar::-webkit-scrollbar {
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(245, 158, 11, 0.3);
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(245, 158, 11, 0.5);
 }

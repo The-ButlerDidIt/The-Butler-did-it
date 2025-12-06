@@ -70,6 +70,7 @@ const UI = {
      * @returns {string} - HTML string for movie card
      */
     createMovieCard(movie) {
+        console.log(movie, "MOVIE");
         const posterUrl = TMDB.getImageUrl(movie.poster_path);
         const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
         const releaseDate = TMDB.formatDate(movie.release_date);
