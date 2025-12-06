@@ -1,7 +1,7 @@
 // const id = new URLSearchParams(window.location.search).get('id'); // my code
 
 // =============================================
-// CineVault - Movie Details Page
+// Movie Details Page
 // =============================================
 
 document.addEventListener('DOMContentLoaded', async () => {

@@ -1,5 +1,5 @@
 // =============================================
-// CineVault - Main Application
+//  Main Application
 // =============================================
 
 // Track current page for pagination
