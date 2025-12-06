@@ -58,6 +58,7 @@ function populateMovieDetails(loadedMovie){
     document.getElementById("movieBudget").textContent = formatMoney(loadedMovie.budget);
     document.getElementById("movieRevenue").textContent = formatMoney(loadedMovie.revenue);
     addCast(loadedMovie.credits.cast);
+    document.getElementById("castCount").textContent = `(${loadedMovie.credits.cast.length})`;
     initCastScrollButtons();
     setBackdrop(loadedMovie.backdrop_path);
     setPoster(loadedMovie.poster_path, loadedMovie.title);
