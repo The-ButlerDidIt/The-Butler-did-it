@@ -211,3 +211,42 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(245, 158, 11, 0.5);
 }
+
+/* Typeahead dropdown */
+.tt-menu {
+    position: absolute;
+    z-index: 60;
+    margin-top: 0.5rem;
+
+    width: 100%;
+    max-height: 24rem;
+    overflow-y: auto;
+ 
+    background-color: #131920;     /* solid surface-light */
+    backdrop-filter: none;          /* remove translucency */
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.75rem;
+
+    /* Subtle shadow for separation */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+}
+
+/* Highlighted cursor item */
+.tt-suggestion.tt-cursor {
+    background-color: #1a222c !important; /* darker, vivid highlight */
+}
+
+/* Improve text readability */
+.tt-suggestion p {
+    color: #e5e7eb; /* gray-200 */
+}
+ 
+.twitter-typeahead {
+    display: block !important;
+    width: 100% !important;
+}
+ 
+.twitter-typeahead .tt-input,
+.twitter-typeahead .tt-hint {
+    width: 100% !important;
+}

@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     //     return;
     // }
 
-   const movieLoaded = await loadMovieDetails(movieId);  
-   console.log(movieLoaded, "MOVIE LOADED!");
+   const movieLoaded = await loadMovieDetails(movieId);   
    populateMovieDetails(movieLoaded);
 });
 

@@ -36,8 +36,9 @@
             <a href="index.html" class="flex-shrink-0 hover:opacity-80 transition-opacity">
                 <img src="images/logo.png" alt="Logo" class="h-11 w-auto">
             </a>
-            <div class="flex-1 relative">
+            <div class="flex-1 max-w-3xl mx-auto relative">
                 <input 
+                    id="global-search"
                     type="text" 
                     placeholder="Search for movies..." 
                     class="w-full px-6 py-3 pl-12 bg-surface-light/80 text-gray-100 rounded-xl border border-white/5 focus:outline-none focus:border-accent/40 focus:bg-surface-light transition-all placeholder:text-gray-500"
@@ -83,7 +84,10 @@
         </div>
     </footer>
     
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/search.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

@@ -23,8 +23,7 @@ const TMDB = {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            const data = await response.json();
-            console.log(data, "Data logged");
+            const data = await response.json(); 
             return data;
         } catch (error) {
             console.error('Error fetching popular movies:', error);
@@ -69,8 +68,7 @@ const UI = {
      * @param {Object} movie - Movie data from API
      * @returns {string} - HTML string for movie card
      */
-    createMovieCard(movie) {
-        console.log(movie, "MOVIE");
+    createMovieCard(movie) { 
         const posterUrl = TMDB.getImageUrl(movie.poster_path);
         const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
         const releaseDate = TMDB.formatDate(movie.release_date);
